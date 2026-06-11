@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #0f172a;
+    --secondary-color: #1e293b;
+    --tertiary-color: #334155;
+    --accent-color: #3b82f6;
+    --text-primary-color: #f8fafc;
+    --text-secondary-color: #94a3b8;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100dvh;
+    background-color: var(--primary-color);
+    color: var(--text-primary-color);
+    font-family: "Poppins", sans-serif;
+}
+
+#root {
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
