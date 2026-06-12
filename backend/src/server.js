@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./mongo.js";
 import authRoute from "./routes/auth.route.js";
+import productRoute from "./routes/product.route.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -15,6 +16,7 @@ app.get("/api/health", (req, res) => {
     res.status(200).json({ message: "¡Todo está funcionando!" });
 });
 app.use("/api/auth", authRoute);
+app.use("/api/product", productRoute);
 
 app.listen(PORT, () => {
     console.log("=".repeat(110));
