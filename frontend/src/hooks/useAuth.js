@@ -22,14 +22,18 @@ const useAuth = () => {
 
     const profileQuery = useQuery({
         queryKey: ["profile"],
-        queryFn: profile,
-        enabled: !!localStorage.getItem("token"),
+        queryFn: () => {
+            const token = localStorage.getItem("token");
+            if (!token) return null;
+            return profile();
+        },
         refetchOnWindowFocus: false,
         retry: false,
     });
 
     const logout = () => {
         localStorage.removeItem("token");
+        queryClient.setQueryData(["profile"], null);
         queryClient.invalidateQueries({ queryKey: ["profile"] });
     };
 
