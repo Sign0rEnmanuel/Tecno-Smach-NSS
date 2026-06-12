@@ -1,8 +1,8 @@
-import Lorry from "../assets/home/info/lorry.svg";
-import MCPay from "../assets/home/info/mcpay.svg";
-import Security from "../assets/home/info/security.svg";
-import Trust from "../assets/home/info/trust.svg";
-import "../styles/components/InfoSection.css";
+import Lorry from "../../assets/home/info/lorry.svg";
+import MCPay from "../../assets/home/info/mcpay.svg";
+import Security from "../../assets/home/info/security.svg";
+import Trust from "../../assets/home/info/trust.svg";
+import "../../styles/components/home/InfoSection.css";
 
 export default function InfoSection() {
     return (

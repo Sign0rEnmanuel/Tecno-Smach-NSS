@@ -1,8 +1,8 @@
-import InitialSection from "../components/InitialSection.jsx";
-import InfoSection from "../components/InfoSection.jsx";
-import ProductsSection from "../components/ProductsSection.jsx";
+import InitialSection from "../components/home/InitialSection.jsx";
+import InfoSection from "../components/home/InfoSection.jsx";
+import ProductsSection from "../components/home/ProductsSection.jsx";
 
-const Home = () => {
+export default function Home() {
     return (
         <div className="home-container">
             <InitialSection />
@@ -10,6 +10,4 @@ const Home = () => {
             <ProductsSection />
         </div>
     );
-};
-
-export default Home;
+}

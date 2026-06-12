@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/components/InitialSection.css";
+import "../../styles/components/home/InitialSection.css";
 
 export default function InitialSection() {
     return (

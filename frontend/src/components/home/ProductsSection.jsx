@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/components/ProductsSection.css";
+import "../../styles/components/home/ProductsSection.css";
 
 export default function ProductsSection() {
     return (
@@ -26,4 +26,4 @@ export default function ProductsSection() {
             </div>
         </section>
     );
-};
+}

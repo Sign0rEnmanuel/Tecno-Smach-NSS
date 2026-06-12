@@ -61,15 +61,15 @@
 }
 
 .products-section-content a:nth-child(1) {
-    background-image: url("../../assets/home/products/laptop.webp");
+    background-image: url("../../../assets/home/products/laptop.webp");
 }
 
 .products-section-content a:nth-child(2) {
-    background-image: url("../../assets/home/products/smartphone.webp");
+    background-image: url("../../../assets/home/products/smartphone.webp");
 }
 
 .products-section-content a:nth-child(3) {
-    background-image: url("../../assets/home/products/impresora.webp");
+    background-image: url("../../../assets/home/products/impresora.webp");
 }
 
 .products-section-content a:hover {
