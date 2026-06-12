@@ -1,0 +1,108 @@
+.products-section {
+    width: 100%;
+    padding: 4rem 2rem 8rem;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+}
+
+.products-section-content {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.products-section-content a {
+    text-decoration: none;
+    color: var(--text-primary-color);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    background-color: var(--secondary-color);
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--tertiary-color);
+}
+
+.products-section-content a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to top,
+        rgba(15, 23, 42, 0.95) 0%,
+        rgba(15, 23, 42, 0.4) 50%,
+        rgba(15, 23, 42, 0.1) 100%
+    );
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+.products-section-content a:hover::before {
+    background: linear-gradient(
+        to top,
+        rgba(15, 23, 42, 0.9) 0%,
+        rgba(15, 23, 42, 0.3) 50%,
+        rgba(15, 23, 42, 0) 100%
+    );
+}
+
+.products-section-content a:nth-child(1) {
+    background-image: url("../../assets/home/products/laptop.webp");
+}
+
+.products-section-content a:nth-child(2) {
+    background-image: url("../../assets/home/products/smartphone.webp");
+}
+
+.products-section-content a:nth-child(3) {
+    background-image: url("../../assets/home/products/impresora.webp");
+}
+
+.products-section-content a:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    border-color: var(--accent-color);
+}
+
+.box-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    z-index: 2;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.box-description {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    z-index: 2;
+    opacity: 0.8;
+    transform: translateY(10px);
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.products-section-content a:hover .box-title,
+.products-section-content a:hover .box-description {
+    transform: translateY(0);
+}
+
+.products-section-content a:hover .box-description {
+    opacity: 1;
+}

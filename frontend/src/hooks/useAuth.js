@@ -25,6 +25,7 @@ const useAuth = () => {
         queryFn: profile,
         enabled: !!localStorage.getItem("token"),
         refetchOnWindowFocus: false,
+        retry: false,
     });
 
     const logout = () => {

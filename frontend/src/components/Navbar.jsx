@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import LogoNavbar from "../assets/logo-navbar.svg";
 import useAuth from "../hooks/useAuth.js";
+import "../styles/components/Navbar.css";
 
 export default function Navbar() {
     const { profileQuery, logout } = useAuth();
