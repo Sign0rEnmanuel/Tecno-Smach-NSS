@@ -6,6 +6,7 @@ import Home from "./page/Home.jsx";
 import About from "./page/About.jsx";
 import Login from "./page/Login.jsx";
 import Register from "./page/Register.jsx";
+import Profile from "./page/Profile.jsx";
 
 export default function App() {
     return (
@@ -20,7 +21,7 @@ export default function App() {
                     path="/perfil"
                     element={
                         <ProtectedRoute>
-                            <h1>Perfil</h1>
+                            <Profile />
                         </ProtectedRoute>
                     }
                 />

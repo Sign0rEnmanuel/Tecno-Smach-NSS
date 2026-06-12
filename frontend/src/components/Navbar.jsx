@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth.js";
 import "../styles/components/Navbar.css";
 
 export default function Navbar() {
-    const { profileQuery, logout } = useAuth();
+    const { profileQuery } = useAuth();
     return (
         <header className="header">
             <div className="header-logo">
@@ -26,13 +26,6 @@ export default function Navbar() {
                         <Link to="/carrito">
                             <button className="nav-btn">Carrito</button>
                         </Link>
-                        <button
-                            className="nav-btn"
-                            onClick={logout}
-                            type="button"
-                        >
-                            Cerrar sesión
-                        </button>
                     </>
                 ) : (
                     <Link to="/login">
