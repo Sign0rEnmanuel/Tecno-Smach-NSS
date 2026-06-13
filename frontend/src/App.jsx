@@ -7,6 +7,8 @@ import About from "./page/About.jsx";
 import Login from "./page/Login.jsx";
 import Register from "./page/Register.jsx";
 import Profile from "./page/Profile.jsx";
+import Products from "./page/Products.jsx";
+import Product from "./page/Product.jsx";
 
 export default function App() {
     return (
@@ -17,6 +19,8 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/nosotros" element={<About />} />
+                <Route path="/productos" element={<Products />} />
+                <Route path="/productos/:id" element={<Product />} />
                 <Route
                     path="/perfil"
                     element={

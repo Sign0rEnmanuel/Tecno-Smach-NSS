@@ -11,8 +11,8 @@ import adminMiddleware from "../middleware/admin.middleware.js";
 
 const router = express.Router();
 
-router.get("/all", authMiddleware, adminMiddleware, allProducts);
-router.get("/all/:id", authMiddleware, adminMiddleware, getProductById);
+router.get("/all", allProducts);
+router.get("/all/:id", getProductById);
 router.post("/create", authMiddleware, adminMiddleware, createProduct);
 router.put("/update/:id", authMiddleware, adminMiddleware, updateProductById);
 router.delete(

@@ -11,6 +11,7 @@ export const allProducts = async (req, res) => {
         }
         return res.status(200).json(products);
     } catch (error) {
+        console.log(error.message);
         return res.status(500).json({ message: "Error al obtener productos" });
     }
 };

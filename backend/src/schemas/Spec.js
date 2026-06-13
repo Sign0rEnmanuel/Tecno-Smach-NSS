@@ -10,7 +10,7 @@ const specSchema = new mongoose.Schema(
         battery: { type: String, required: true },
         camera: { type: String, required: true },
     },
-    { timestamps: true, _id: false },
+    { _id: false },
 );
 
 export default specSchema;
