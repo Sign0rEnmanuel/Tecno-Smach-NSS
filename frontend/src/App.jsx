@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./middleware/ProtectedRoute.jsx";
+import AdminRoute from "./middleware/AdminRoute.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./page/Home.jsx";
@@ -9,6 +10,7 @@ import Register from "./page/Register.jsx";
 import Profile from "./page/Profile.jsx";
 import Products from "./page/Products.jsx";
 import Product from "./page/Product.jsx";
+import Dashboard from "./page/Dashboard.jsx";
 
 export default function App() {
     return (
@@ -35,6 +37,14 @@ export default function App() {
                         <ProtectedRoute>
                             <h1>Carrito</h1>
                         </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/dashboard/*"
+                    element={
+                        <AdminRoute>
+                            <Dashboard />
+                        </AdminRoute>
                     }
                 />
             </Routes>

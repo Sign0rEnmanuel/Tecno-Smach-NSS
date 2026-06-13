@@ -15,9 +15,6 @@ export default function Navbar() {
                 <Link to="/">
                     <button className="nav-btn">Inicio</button>
                 </Link>
-                <Link to="/nosotros">
-                    <button className="nav-btn">Nosotros</button>
-                </Link>
                 {profileQuery.data ? (
                     <>
                         <Link to="/perfil">
@@ -26,6 +23,11 @@ export default function Navbar() {
                         <Link to="/carrito">
                             <button className="nav-btn">Carrito</button>
                         </Link>
+                        {profileQuery.data.role === "admin" && (
+                            <Link to="/dashboard">
+                                <button className="nav-btn">Dashboard</button>
+                            </Link>
+                        )}
                     </>
                 ) : (
                     <Link to="/login">
