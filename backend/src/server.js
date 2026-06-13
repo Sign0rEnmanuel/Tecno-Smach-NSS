@@ -5,6 +5,7 @@ import connectDB from "./mongo.js";
 import authRoute from "./routes/auth.route.js";
 import productRoute from "./routes/product.route.js";
 import adminRoute from "./routes/admin.route.js";
+import paymentRoute from "./routes/payment.route.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -19,6 +20,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/admin", adminRoute);
+app.use("/api/payment", paymentRoute);
 
 app.listen(PORT, () => {
     console.log("=".repeat(110));

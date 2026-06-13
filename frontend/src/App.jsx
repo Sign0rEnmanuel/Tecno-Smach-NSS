@@ -11,6 +11,8 @@ import Profile from "./page/Profile.jsx";
 import Products from "./page/Products.jsx";
 import Product from "./page/Product.jsx";
 import Dashboard from "./page/Dashboard.jsx";
+import PaymentSuccess from "./page/PaymentSuccess.jsx";
+import PaymentFailure from "./page/PaymentFailure.jsx";
 
 export default function App() {
     return (
@@ -31,6 +33,9 @@ export default function App() {
                         </ProtectedRoute>
                     }
                 />
+                <Route path="/pago-exitoso" element={<PaymentSuccess />} />
+                <Route path="/pago-fallido" element={<PaymentFailure />} />
+                <Route path="/pago-pendiente" element={<PaymentSuccess />} />
                 <Route
                     path="/carrito"
                     element={
