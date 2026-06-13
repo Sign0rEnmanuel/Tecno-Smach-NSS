@@ -31,30 +31,16 @@ const useProduct = () => {
     });
 
     const updateProductMutation = useMutation({
-        mutationFn: updateProductById,
-        onSuccess: (data) => {
-            queryClient.setQueryData(["allProducts"], (oldData) => {
-                const index = oldData.findIndex(
-                    (product) => product._id === data._id,
-                );
-                if (index === -1) return oldData;
-                oldData[index] = data;
-                return oldData;
-            });
+        mutationFn: ({ id, product }) => updateProductById(id, product),
+        onSuccess: () => {
+            queryClient.invalidateQueries(["allProducts"]);
         },
     });
 
     const deleteProductMutation = useMutation({
         mutationFn: deleteProductById,
-        onSuccess: (data) => {
-            queryClient.setQueryData(["allProducts"], (oldData) => {
-                const index = oldData.findIndex(
-                    (product) => product._id === data._id,
-                );
-                if (index === -1) return oldData;
-                oldData.splice(index, 1);
-                return oldData;
-            });
+        onSuccess: () => {
+            queryClient.invalidateQueries(["allProducts"]);
         },
     });
 

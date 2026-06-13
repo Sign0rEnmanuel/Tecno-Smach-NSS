@@ -1,4 +1,5 @@
 import useAuth from "../hooks/useAuth.js";
+import ProfileOrders from "../components/profile/ProfileOrders.jsx";
 import "../styles/pages/Profile.css";
 
 export default function Profile() {
@@ -30,15 +31,15 @@ export default function Profile() {
                         <p>
                             <strong>Rol:</strong> {profile.role}
                         </p>
-                        <p>
-                            <strong>ID:</strong> {profile._id}
-                        </p>
                     </div>
 
                     <div className="profile-actions">
                         <button onClick={logout}>Cerrar sesión</button>
                     </div>
                 </div>
+
+                {/* Historial de Compras */}
+                <ProfileOrders />
             </div>
         </div>
     );

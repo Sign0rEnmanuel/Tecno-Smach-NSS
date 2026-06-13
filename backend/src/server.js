@@ -6,6 +6,7 @@ import authRoute from "./routes/auth.route.js";
 import productRoute from "./routes/product.route.js";
 import adminRoute from "./routes/admin.route.js";
 import paymentRoute from "./routes/payment.route.js";
+import orderRoute from "./routes/order.route.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -21,6 +22,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api/payment", paymentRoute);
+app.use("/api/order", orderRoute);
 
 app.listen(PORT, () => {
     console.log("=".repeat(110));

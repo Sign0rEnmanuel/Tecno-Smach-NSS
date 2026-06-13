@@ -1,6 +1,7 @@
 import { Preference, Payment } from "mercadopago";
 import client from "../mercadopago.js";
 import Product from "../schemas/Product.js";
+import Order from "../schemas/Order.js";
 
 export const createPreference = async (req, res) => {
     try {
@@ -14,6 +15,14 @@ export const createPreference = async (req, res) => {
         if (product.stock < quantity) {
             return res.status(400).json({ message: "Stock insuficiente" });
         }
+
+        const order = await Order.create({
+            user: req.user._id,
+            product: product._id,
+            quantity: Number(quantity),
+            totalPrice: Number(product.price) * Number(quantity),
+            paymentStatus: "pending",
+        });
 
         const preference = new Preference(client);
 
@@ -36,12 +45,16 @@ export const createPreference = async (req, res) => {
                 },
                 auto_return: "approved",
                 metadata: {
+                    order_id: order._id.toString(),
                     product_id: product._id.toString(),
                     quantity: Number(quantity),
                 },
                 notification_url: `${process.env.NGROK_URL}/api/payment/webhook`,
             },
         });
+
+        order.mpPreferenceId = response.id;
+        await order.save();
 
         res.status(200).json({ init_point: response.init_point });
     } catch (error) {
@@ -66,16 +79,24 @@ export const webhook = async (req, res) => {
             if (paymentInfo.status === "approved") {
                 const metadata = paymentInfo.metadata;
 
-                if (metadata && metadata.product_id) {
+                if (metadata && metadata.order_id) {
+                    const orderId = metadata.order_id;
                     const productId = metadata.product_id;
                     const quantity = metadata.quantity || 1;
 
-                    // Descontar stock
-                    await Product.findByIdAndUpdate(productId, {
-                        $inc: { stock: -quantity }
+                    // Actualizar estado del pedido a aprobado
+                    const updatedOrder = await Order.findByIdAndUpdate(orderId, {
+                        paymentStatus: "approved",
+                        deliveryStatus: "preparing"
                     });
 
-                    console.log(`✅ Pago aprobado. Stock descontado para producto: ${productId}`);
+                    // Descontar stock
+                    if (updatedOrder) {
+                        await Product.findByIdAndUpdate(productId, {
+                            $inc: { stock: -quantity }
+                        });
+                        console.log(`✅ Pago aprobado. Pedido ${orderId} actualizado. Stock descontado para producto: ${productId}`);
+                    }
                 }
             }
         }
