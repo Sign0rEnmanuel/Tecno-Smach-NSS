@@ -1,4 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
+import DashboardUsers from "../components/dashboard/users/DashboardUsers.jsx";
 import "../styles/pages/Dashboard.css";
 
 export default function Dashboard() {
@@ -17,7 +18,7 @@ export default function Dashboard() {
             </nav>
             <main className="dashboard-main">
                 <Routes>
-                    <Route path="/" element={<h2>Pagina principal</h2>} />
+                    <Route path="/" element={<DashboardUsers />} />
                     <Route path="/productos" element={<h2>Productos</h2>} />
                     <Route path="/pedidos" element={<h2>Pedidos</h2>} />
                 </Routes>
