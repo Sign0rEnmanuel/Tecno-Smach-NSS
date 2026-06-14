@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
+import User from "../schemas/User.js";
 
-const authMiddleware = (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     const token = req.headers.authorization;
     if (!token) {
         return res
@@ -12,7 +13,13 @@ const authMiddleware = (req, res, next) => {
             ? token.slice(7)
             : token;
         const decoded = jwt.verify(tokenString, process.env.JWT_SECRET);
-        req.user = decoded;
+        
+        const user = await User.findById(decoded._id).select("-password");
+        if (!user) {
+            return res.status(401).json({ message: "Usuario no encontrado" });
+        }
+        
+        req.user = user;
         next();
     } catch (error) {
         return res.status(401).json({ message: "Token no válido" });
