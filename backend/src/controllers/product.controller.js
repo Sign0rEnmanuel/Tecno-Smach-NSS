@@ -4,11 +4,6 @@ import validateDataCreate from "../utils/products/validateDataCreate.js";
 export const allProducts = async (req, res) => {
     try {
         const products = await Product.find();
-        if (products.length === 0) {
-            return res
-                .status(404)
-                .json({ message: "No hay productos en la base de datos" });
-        }
         return res.status(200).json(products);
     } catch (error) {
         console.log(error.message);
