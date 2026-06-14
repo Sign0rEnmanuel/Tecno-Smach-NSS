@@ -3,6 +3,8 @@ import client from "../mercadopago.js";
 import Product from "../schemas/Product.js";
 import Order from "../schemas/Order.js";
 
+const trimUrl = (url) => (url || "").replace(/\/+$/, "");
+
 export const createPreference = async (req, res) => {
     try {
         const { productId, quantity = 1 } = req.body;
@@ -24,6 +26,9 @@ export const createPreference = async (req, res) => {
             paymentStatus: "pending",
         });
 
+        const frontendUrl = trimUrl(process.env.FRONTEND_URL);
+        const backendUrl = trimUrl(process.env.BACKEND_URL || process.env.NGROK_URL);
+
         const preference = new Preference(client);
 
         const response = await preference.create({
@@ -39,9 +44,9 @@ export const createPreference = async (req, res) => {
                     },
                 ],
                 back_urls: {
-                    success: `${process.env.FRONTEND_URL}/pago-exitoso`,
-                    failure: `${process.env.FRONTEND_URL}/pago-fallido`,
-                    pending: `${process.env.FRONTEND_URL}/pago-pendiente`,
+                    success: `${frontendUrl}/pago-exitoso`,
+                    failure: `${frontendUrl}/pago-fallido`,
+                    pending: `${frontendUrl}/pago-pendiente`,
                 },
                 auto_return: "approved",
                 metadata: {
@@ -49,7 +54,7 @@ export const createPreference = async (req, res) => {
                     product_id: product._id.toString(),
                     quantity: Number(quantity),
                 },
-                notification_url: `${process.env.BACKEND_URL || process.env.NGROK_URL}/api/payment/webhook`,
+                notification_url: `${backendUrl}/api/payment/webhook`,
             },
         });
 
