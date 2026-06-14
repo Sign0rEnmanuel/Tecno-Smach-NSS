@@ -13,8 +13,10 @@ const validateDataCreate = (data) => {
     if (
         !name ||
         !description ||
-        !price ||
-        !stock ||
+        price === undefined ||
+        price === null ||
+        stock === undefined ||
+        stock === null ||
         !category ||
         !image ||
         !brand ||

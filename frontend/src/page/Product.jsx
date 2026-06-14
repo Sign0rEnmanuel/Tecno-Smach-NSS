@@ -7,7 +7,7 @@ import "../styles/pages/Product.css";
 
 export default function Product() {
     const { id } = useParams();
-    const { getProductByIdQuery } = useProduct();
+    const { getAllProductsQuery, getProductByIdQuery } = useProduct();
     const product = getProductByIdQuery(id);
     const [isBuying, setIsBuying] = useState(false);
 
@@ -28,8 +28,25 @@ export default function Product() {
         }
     };
 
+    if (getAllProductsQuery.isLoading) {
+        return (
+            <div className="product-page">
+                <div className="product-page-loading">
+                    <div className="loader"></div>
+                    <p>Cargando producto...</p>
+                </div>
+            </div>
+        );
+    }
+
     if (!product) {
-        return <div>Producto no encontrado</div>;
+        return (
+            <div className="product-page">
+                <div className="product-page-error">
+                    <p>Producto no encontrado</p>
+                </div>
+            </div>
+        );
     }
     return (
         <div className="product-page">

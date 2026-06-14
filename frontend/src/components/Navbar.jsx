@@ -15,6 +15,12 @@ export default function Navbar() {
                 <Link to="/">
                     <button className="nav-btn">Inicio</button>
                 </Link>
+                <Link to="/productos">
+                    <button className="nav-btn">Productos</button>
+                </Link>
+                <Link to="/nosotros">
+                    <button className="nav-btn">Nosotros</button>
+                </Link>
                 {profileQuery.data ? (
                     <>
                         <Link to="/perfil">

@@ -14,7 +14,7 @@ const useAdmin = () => {
     const changeRoleMutation = useMutation({
         mutationFn: ({ userId, role }) => changeUserRole(userId, role),
         onSuccess: (data) => {
-            queryClient.invalidateQueries(["admin_users"]);
+            queryClient.invalidateQueries({ queryKey: ["admin_users"] });
             if (toast && toast.success) {
                 toast.success(data.message || "Rol actualizado correctamente");
             } else {

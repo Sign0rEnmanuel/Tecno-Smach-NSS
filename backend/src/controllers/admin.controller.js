@@ -20,7 +20,7 @@ export const changeUserRole = async (req, res) => {
             return res.status(400).json({ message: "Rol inválido" });
         }
 
-        if (id === _id) {
+        if (id === _id.toString()) {
             return res
                 .status(403)
                 .json({ message: "No puedes cambiar tu propio rol" });

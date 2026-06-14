@@ -23,24 +23,27 @@ const useProduct = () => {
     const createProductMutation = useMutation({
         mutationFn: createProduct,
         onSuccess: (data) => {
-            queryClient.setQueryData(["allProducts"], (oldData) => [
-                ...oldData,
-                data,
-            ]);
+            queryClient.setQueryData(["allProducts"], (oldData) => {
+                if (Array.isArray(oldData)) {
+                    return [...oldData, data];
+                }
+                return [data];
+            });
+            queryClient.invalidateQueries({ queryKey: ["allProducts"] });
         },
     });
 
     const updateProductMutation = useMutation({
         mutationFn: ({ id, product }) => updateProductById(id, product),
         onSuccess: () => {
-            queryClient.invalidateQueries(["allProducts"]);
+            queryClient.invalidateQueries({ queryKey: ["allProducts"] });
         },
     });
 
     const deleteProductMutation = useMutation({
         mutationFn: deleteProductById,
         onSuccess: () => {
-            queryClient.invalidateQueries(["allProducts"]);
+            queryClient.invalidateQueries({ queryKey: ["allProducts"] });
         },
     });
 

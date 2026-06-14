@@ -49,7 +49,7 @@ export const createPreference = async (req, res) => {
                     product_id: product._id.toString(),
                     quantity: Number(quantity),
                 },
-                notification_url: `${process.env.NGROK_URL}/api/payment/webhook`,
+                notification_url: `${process.env.BACKEND_URL || process.env.NGROK_URL}/api/payment/webhook`,
             },
         });
 

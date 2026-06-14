@@ -1,24 +1,10 @@
-import jwt from "jsonwebtoken";
-
 const adminMiddleware = (req, res, next) => {
-    const token = req.headers.authorization;
-    if (!token) {
+    if (!req.user || req.user.role !== "admin") {
         return res
-            .status(401)
-            .json({ message: "No se ha proporcionado un token" });
+            .status(403)
+            .json({ message: "Acceso denegado. Se requieren permisos de administrador." });
     }
-    try {
-        const tokenString = token.startsWith("Bearer ")
-            ? token.slice(7)
-            : token;
-        const decoded = jwt.verify(tokenString, process.env.JWT_SECRET);
-        if (decoded.role !== "admin") {
-            return res.status(401).json({ message: "No tiene permisos" });
-        }
-        next();
-    } catch (error) {
-        return res.status(401).json({ message: "Token no válido" });
-    }
+    next();
 };
 
 export default adminMiddleware;

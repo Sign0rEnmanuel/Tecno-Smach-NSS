@@ -20,8 +20,8 @@ const useOrder = () => {
     const updateDeliveryMutation = useMutation({
         mutationFn: ({ orderId, deliveryStatus }) => updateDeliveryStatus(orderId, deliveryStatus),
         onSuccess: (data) => {
-            queryClient.invalidateQueries(["all_orders"]);
-            queryClient.invalidateQueries(["my_orders"]);
+            queryClient.invalidateQueries({ queryKey: ["all_orders"] });
+            queryClient.invalidateQueries({ queryKey: ["my_orders"] });
             if (toast && toast.success) {
                 toast.success(data.message || "Estado actualizado");
             } else {
