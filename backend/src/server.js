@@ -15,13 +15,15 @@ await connectDB();
 app.use(express.json());
 const allowedOrigins = [
     process.env.FRONTEND_URL ? process.env.FRONTEND_URL.replace(/\/$/, "") : "",
-    "http://localhost:5173"
+    "http://localhost:5173",
 ].filter(Boolean);
 
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true
-}));
+app.use(
+    cors({
+        origin: allowedOrigins,
+        credentials: true,
+    }),
+);
 
 app.get("/api/health", (req, res) => {
     res.status(200).json({ message: "¡Todo está funcionando!" });

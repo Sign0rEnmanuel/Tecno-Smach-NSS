@@ -2,7 +2,11 @@
     max-width: 900px;
     margin: 4rem auto 8rem;
     padding: 4rem 3rem;
-    background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+    background: linear-gradient(
+        145deg,
+        rgba(30, 41, 59, 0.7) 0%,
+        rgba(15, 23, 42, 0.9) 100%
+    );
     backdrop-filter: blur(10px);
     border: 1px solid rgba(59, 130, 246, 0.2);
     border-radius: 24px;
@@ -13,7 +17,7 @@
 }
 
 .contact-section-about::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -52,4 +56,19 @@
     color: #ffffff;
     background: rgba(96, 165, 250, 0.3);
     text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+}
+
+@media (max-width: 768px) {
+    .contact-section-about {
+        margin: 2rem 1.25rem 5rem;
+        padding: 2.5rem 1.5rem;
+    }
+
+    .contact-section-about h2 {
+        font-size: 1.8rem;
+    }
+
+    .contact-section-about p {
+        font-size: 1rem;
+    }
 }

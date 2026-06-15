@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
 }
 
@@ -17,6 +17,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .dashboard-btn {
@@ -53,4 +54,44 @@
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+        margin-top: 70px;
+        min-height: calc(100dvh - 70px);
+        gap: 0;
+    }
+
+    .dashboard-nav {
+        width: 100%;
+        min-height: unset;
+        border-right: none;
+        border-bottom: 2px solid var(--tertiary-color);
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0;
+    }
+
+    .dashboard-btn {
+        flex: 1;
+        min-width: max-content;
+    }
+
+    .dashboard-btn button {
+        padding: 14px 16px;
+        font-size: 1rem;
+        border-bottom: none;
+        border-right: 1px solid var(--tertiary-color);
+        white-space: nowrap;
+    }
+
+    .dashboard-main {
+        min-height: unset;
+        padding: 1rem;
+    }
 }

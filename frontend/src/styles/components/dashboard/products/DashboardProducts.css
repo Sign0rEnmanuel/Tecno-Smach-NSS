@@ -162,3 +162,48 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .dashboard-products-container {
+        padding: 1rem;
+    }
+
+    .dashboard-products-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .dashboard-products-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .products-table th, .products-table td {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .products-table th {
+        font-size: 0.75rem;
+    }
+
+    .product-item {
+        gap: 0.5rem;
+    }
+
+    .product-item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-actions {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .edit-btn, .delete-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}

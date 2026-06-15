@@ -170,3 +170,48 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .dashboard-orders-container {
+        padding: 1rem;
+    }
+
+    .dashboard-orders-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .dashboard-orders-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .orders-table th, .orders-table td {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .orders-table th {
+        font-size: 0.75rem;
+    }
+
+    .order-product {
+        gap: 0.5rem;
+    }
+
+    .order-product img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .status-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .delivery-select {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}

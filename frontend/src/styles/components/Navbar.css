@@ -6,7 +6,7 @@
     border-bottom: 4px solid var(--tertiary-color);
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 100;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -59,4 +59,109 @@
 
 .nav-btn:focus {
     outline: none;
+}
+
+/* Hamburger button */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 101;
+}
+
+.hamburger span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background-color: var(--text-primary-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Hamburger → X animation */
+.hamburger.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 20px;
+        height: 70px;
+    }
+
+    .header-logo img {
+        width: 100px;
+        height: 70px;
+    }
+
+    .header-logo h2 {
+        font-size: 1.1rem;
+        margin-left: 10px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .header-nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        border-bottom: 3px solid var(--tertiary-color);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem 0;
+        gap: 0;
+        /* Hidden by default */
+        max-height: 0;
+        overflow: hidden;
+        transition:
+            max-height 0.35s ease,
+            padding 0.35s ease;
+    }
+
+    .header-nav.nav-open {
+        max-height: 500px;
+        padding: 1rem 0;
+    }
+
+    .header-nav a {
+        width: 100%;
+    }
+
+    .nav-btn {
+        margin-left: 0;
+        width: 100%;
+        border-radius: 0;
+        padding: 14px 24px;
+        text-align: left;
+        font-size: 1rem;
+        background-color: transparent;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-btn:hover {
+        background-color: var(--secondary-color);
+    }
 }

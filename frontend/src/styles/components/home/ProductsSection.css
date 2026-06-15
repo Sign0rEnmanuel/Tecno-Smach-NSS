@@ -106,3 +106,17 @@
 .products-section-content a:hover .box-description {
     opacity: 1;
 }
+
+@media (max-width: 768px) {
+    .products-section {
+        padding: 3rem 1.25rem 5rem;
+    }
+
+    .products-section-content {
+        grid-template-columns: 1fr;
+    }
+
+    .products-section-content a {
+        height: 260px;
+    }
+}

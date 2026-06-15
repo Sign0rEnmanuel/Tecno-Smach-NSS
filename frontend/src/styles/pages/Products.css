@@ -261,3 +261,24 @@
         transform: translateY(0);
     }
 }
+
+@media (max-width: 768px) {
+    .products {
+        margin-top: 70px;
+        padding: 2rem 1.25rem;
+    }
+
+    .products-container h1 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .product-image-container {
+        height: 200px;
+    }
+}

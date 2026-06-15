@@ -119,3 +119,55 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .dashboard-users-container {
+        padding: 1rem;
+    }
+
+    .dashboard-users-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .dashboard-users-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .users-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .users-table th, .users-table td {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .users-table th {
+        font-size: 0.75rem;
+    }
+
+    .role-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .role-select {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ── Small Mobile ── */
+@media (max-width: 480px) {
+    .dashboard-users-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .users-table th, .users-table td {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
