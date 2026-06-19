@@ -1,3 +1,4 @@
+/* ── Dashboard Products ── */
 .dashboard-products-container {
     width: 100%;
     padding: 2rem;
@@ -11,22 +12,28 @@
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--tertiary-color);
     padding-bottom: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .dashboard-products-header h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--text-primary-color);
 }
 
 .add-product-btn {
-    padding: 0.8rem 1.5rem;
+    padding: 0.75rem 1.4rem;
     background-color: var(--accent-color);
     color: white;
     border: none;
     border-radius: 8px;
     font-weight: 600;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
+    transition:
+        background-color 0.2s,
+        transform 0.15s;
+    white-space: nowrap;
 }
 
 .add-product-btn:hover {
@@ -34,6 +41,7 @@
     transform: translateY(-2px);
 }
 
+/* ── Tabla (desktop) ── */
 .products-table-wrapper {
     background: rgba(30, 41, 59, 0.5);
     border: 1px solid var(--tertiary-color);
@@ -49,8 +57,9 @@
     text-align: left;
 }
 
-.products-table th, .products-table td {
-    padding: 1.2rem 1.5rem;
+.products-table th,
+.products-table td {
+    padding: 1.1rem 1.4rem;
     border-bottom: 1px solid var(--tertiary-color);
 }
 
@@ -59,18 +68,17 @@
     color: var(--text-secondary-color);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .products-table tr:last-child td {
     border-bottom: none;
 }
-
 .products-table tbody tr {
     transition: background-color 0.2s ease;
 }
-
 .products-table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.03);
 }
@@ -78,41 +86,40 @@
 .product-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.9rem;
 }
 
 .product-item img {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 8px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .product-item-info {
     display: flex;
     flex-direction: column;
 }
-
 .product-item-name {
     color: var(--text-primary-color);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
-
 .product-item-brand {
     color: var(--text-secondary-color);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .product-price {
     font-weight: 600;
     color: #10b981;
+    white-space: nowrap;
 }
 
 .product-stock {
     font-weight: 600;
 }
-
 .product-stock.low {
     color: #ef4444;
 }
@@ -122,74 +129,139 @@
     gap: 0.5rem;
 }
 
-.edit-btn, .delete-btn {
-    padding: 0.5rem 1rem;
+.edit-btn,
+.delete-btn {
+    padding: 0.45rem 0.9rem;
     border: none;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
+    white-space: nowrap;
 }
 
 .edit-btn {
-    background-color: rgba(59, 130, 246, 0.2);
+    background-color: rgba(59, 130, 246, 0.15);
     color: var(--accent-color);
 }
 
 .edit-btn:hover {
-    background-color: rgba(59, 130, 246, 0.3);
+    background-color: rgba(59, 130, 246, 0.28);
 }
 
 .delete-btn {
-    background-color: rgba(239, 68, 68, 0.2);
+    background-color: rgba(239, 68, 68, 0.15);
     color: #ef4444;
 }
 
 .delete-btn:hover {
-    background-color: rgba(239, 68, 68, 0.3);
+    background-color: rgba(239, 68, 68, 0.28);
+}
+.delete-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
-.loading-products, .error-products {
-    width: 100%;
+.loading-products,
+.error-products {
     padding: 4rem;
     text-align: center;
     color: var(--text-secondary-color);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ── Mobile ── */
+/* ════════════════════════════════
+   MOBILE — tabla → cards
+   ════════════════════════════════ */
 @media (max-width: 768px) {
     .dashboard-products-container {
         padding: 1rem;
     }
 
-    .dashboard-products-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
     .dashboard-products-header h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
-    .products-table th, .products-table td {
-        padding: 0.8rem 1rem;
+    .add-product-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .products-table-wrapper {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        overflow: visible;
+    }
+
+    .products-table thead {
+        display: none;
+    }
+
+    .products-table,
+    .products-table tbody {
+        display: block;
+        width: 100%;
+    }
+
+    .products-table tbody tr {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid var(--tertiary-color);
+        border-radius: 14px;
+        padding: 1rem 1.1rem;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .products-table tbody tr:last-child {
+        margin-bottom: 0;
+    }
+
+    .products-table td {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0;
+        border: none;
         font-size: 0.9rem;
     }
 
-    .products-table th {
-        font-size: 0.75rem;
+    .products-table td::before {
+        content: attr(data-label);
+        color: var(--text-secondary-color);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
-    .product-item {
-        gap: 0.5rem;
+    /* La card del producto necesita ancho completo */
+    .products-table td:has(.product-item) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .products-table td:has(.product-item)::before {
+        margin-bottom: 0.3rem;
     }
 
     .product-item img {
@@ -197,13 +269,24 @@
         height: 40px;
     }
 
-    .product-actions {
+    /* Acciones: botones lado a lado */
+    .products-table td:has(.product-actions) {
         flex-direction: column;
-        gap: 0.3rem;
+        align-items: flex-start;
     }
 
-    .edit-btn, .delete-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
+    .products-table td:has(.product-actions)::before {
+        margin-bottom: 0.3rem;
+    }
+
+    .product-actions {
+        width: 100%;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        flex: 1;
+        text-align: center;
+        padding: 0.5rem;
     }
 }

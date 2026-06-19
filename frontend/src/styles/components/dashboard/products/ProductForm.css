@@ -1,22 +1,24 @@
-/* Product Form Shared Styles */
+/* ── Product Form Modal ── */
 .product-form-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(6px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: overlayFadeIn 0.25s ease-out;
+    animation: overlayFadeIn 0.2s ease-out;
+    padding: 1rem; /* evita que el modal toque los bordes */
 }
 
 @keyframes overlayFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .product-form-modal {
@@ -24,37 +26,54 @@
     border: 1px solid var(--tertiary-color, #334155);
     border-radius: 20px;
     padding: 2.5rem;
-    width: 90%;
-    max-width: 700px;
-    max-height: 85vh;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
     overflow-y: auto;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-    animation: modalSlideIn 0.3s ease-out;
+    animation: modalSlideIn 0.28s ease-out;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tertiary-color) transparent;
+}
+
+.product-form-modal::-webkit-scrollbar {
+    width: 5px;
+}
+.product-form-modal::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary-color);
+    border-radius: 4px;
 }
 
 @keyframes modalSlideIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.97); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .product-form-modal h2 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: var(--text-primary-color);
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--tertiary-color);
     padding-bottom: 1rem;
 }
 
+/* ── Form layout ── */
 .product-form {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.1rem;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
+    gap: 1.1rem;
 }
 
 .form-group {
@@ -69,7 +88,7 @@
 
 .form-group label {
     color: var(--text-secondary-color);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 600;
@@ -86,7 +105,8 @@
     font-family: inherit;
     font-size: 0.95rem;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.25s ease;
+    width: 100%;
 }
 
 .form-group input:focus,
@@ -95,38 +115,47 @@
     border-color: var(--accent-color);
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-secondary-color);
+    opacity: 0.6;
+}
+
 .form-group textarea {
     resize: vertical;
     min-height: 80px;
 }
 
 .form-section-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--accent-color, #3b82f6);
     font-weight: 600;
     margin-top: 0.5rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ── Acciones ── */
 .form-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 1rem;
+    gap: 0.9rem;
     margin-top: 1rem;
-    padding-top: 1.5rem;
+    padding-top: 1.4rem;
     border-top: 1px solid var(--tertiary-color);
 }
 
 .form-cancel-btn,
 .form-submit-btn {
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 1.8rem;
     border: none;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
+    transition:
+        background-color 0.2s,
+        transform 0.15s;
 }
 
 .form-cancel-btn {
@@ -149,43 +178,74 @@
 }
 
 .form-submit-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.45;
     cursor: not-allowed;
     transform: none;
 }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
+    .product-form-overlay {
+        align-items: flex-end; /* modal sube desde abajo en mobile */
+        padding: 0;
+    }
+
     .product-form-modal {
-        padding: 1.5rem;
-        max-width: 95%;
+        border-radius: 20px 20px 0 0;
+        padding: 1.5rem 1.25rem 2rem;
+        max-width: 100%;
+        max-height: 92vh;
+        animation: modalSlideUp 0.3s ease-out;
+    }
+
+    @keyframes modalSlideUp {
+        from {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
     .product-form-modal h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
+        font-size: 1.35rem;
+        margin-bottom: 1.25rem;
     }
 
     .form-row {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        grid-template-columns: 1fr; /* una columna en mobile */
+        gap: 0.9rem;
+    }
+
+    .form-group.full-width {
+        grid-column: unset;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
-        padding: 0.7rem 0.9rem;
-        font-size: 0.9rem;
+        font-size: 1rem; /* evita zoom en iOS */
+        padding: 0.75rem 0.9rem;
     }
 
     .form-actions {
         flex-direction: column-reverse;
-        gap: 0.8rem;
+        gap: 0.7rem;
     }
 
     .form-cancel-btn,
     .form-submit-btn {
         width: 100%;
-        padding: 0.8rem;
+        padding: 0.9rem;
+        text-align: center;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .product-form-modal {
+        padding: 1.25rem 1rem 1.75rem;
     }
 }

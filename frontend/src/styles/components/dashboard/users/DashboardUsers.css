@@ -1,3 +1,4 @@
+/* ── Dashboard Users ── */
 .dashboard-users-container {
     width: 100%;
     padding: 2rem;
@@ -14,15 +15,16 @@
 }
 
 .dashboard-users-header h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--text-primary-color);
 }
 
+/* ── Tabla (desktop) ── */
 .users-table-wrapper {
     background: rgba(30, 41, 59, 0.5);
     border: 1px solid var(--tertiary-color);
     border-radius: 16px;
-    overflow: hidden;
+    overflow-x: auto;
     backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
@@ -33,8 +35,9 @@
     text-align: left;
 }
 
-.users-table th, .users-table td {
-    padding: 1.2rem 1.5rem;
+.users-table th,
+.users-table td {
+    padding: 1.1rem 1.4rem;
     border-bottom: 1px solid var(--tertiary-color);
 }
 
@@ -43,131 +46,171 @@
     color: var(--text-secondary-color);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .users-table tr:last-child td {
     border-bottom: none;
 }
-
 .users-table tbody tr {
     transition: background-color 0.2s ease;
 }
-
 .users-table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.03);
 }
 
-.user-email, .user-name {
+.user-name {
     color: var(--text-primary-color);
     font-weight: 500;
 }
 
+.user-email {
+    color: var(--text-secondary-color);
+    font-size: 0.88rem;
+}
+
 .role-badge {
-    padding: 0.4rem 1rem;
+    padding: 0.35rem 0.9rem;
     border-radius: 50px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    text-transform: capitalize;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .role-badge.admin {
-    background-color: rgba(16, 185, 129, 0.2);
+    background-color: rgba(16, 185, 129, 0.15);
     color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.4);
+    border: 1px solid rgba(16, 185, 129, 0.35);
 }
 
 .role-badge.user {
-    background-color: rgba(59, 130, 246, 0.2);
+    background-color: rgba(59, 130, 246, 0.15);
     color: var(--accent-color);
-    border: 1px solid rgba(59, 130, 246, 0.4);
+    border: 1px solid rgba(59, 130, 246, 0.35);
 }
 
 .role-select {
-    padding: 0.6rem 1rem;
+    padding: 0.55rem 0.9rem;
     background-color: var(--primary-color);
     color: var(--text-primary-color);
     border: 1px solid var(--tertiary-color);
     border-radius: 8px;
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     cursor: pointer;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.2s;
 }
 
 .role-select:focus {
     border-color: var(--accent-color);
 }
-
 .role-select:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
-.loading-users, .error-users {
-    width: 100%;
+.loading-users,
+.error-users {
     padding: 4rem;
     text-align: center;
     color: var(--text-secondary-color);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ── Mobile ── */
+/* ════════════════════════════════
+   MOBILE — tabla → cards
+   ════════════════════════════════ */
 @media (max-width: 768px) {
     .dashboard-users-container {
         padding: 1rem;
     }
 
-    .dashboard-users-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
     .dashboard-users-header h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
+    /* Deshabilitar estilos de tabla */
     .users-table-wrapper {
-        overflow-x: auto;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        overflow: visible;
     }
 
-    .users-table th, .users-table td {
-        padding: 0.8rem 1rem;
+    .users-table thead {
+        display: none;
+    }
+
+    .users-table,
+    .users-table tbody {
+        display: block;
+        width: 100%;
+    }
+
+    /* Cada fila = card */
+    .users-table tbody tr {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid var(--tertiary-color);
+        border-radius: 14px;
+        padding: 1rem 1.1rem;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .users-table tbody tr:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Cada celda: label a la izquierda, valor a la derecha */
+    .users-table td {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0;
+        border: none;
         font-size: 0.9rem;
     }
 
-    .users-table th {
-        font-size: 0.75rem;
+    /* Label generado desde data-label */
+    .users-table td::before {
+        content: attr(data-label);
+        color: var(--text-secondary-color);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
-    .role-badge {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.75rem;
+    .user-email {
+        text-align: right;
+        word-break: break-all;
+        font-size: 0.85rem;
     }
 
     .role-select {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-    }
-}
-
-/* ── Small Mobile ── */
-@media (max-width: 480px) {
-    .dashboard-users-header h2 {
-        font-size: 1.3rem;
-    }
-
-    .users-table th, .users-table td {
-        padding: 0.6rem 0.8rem;
-        font-size: 0.8rem;
+        font-size: 0.82rem;
+        padding: 0.4rem 0.65rem;
     }
 }

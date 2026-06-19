@@ -37,14 +37,6 @@ export default function App() {
                 <Route path="/pago-fallido" element={<PaymentFailure />} />
                 <Route path="/pago-pendiente" element={<PaymentSuccess />} />
                 <Route
-                    path="/carrito"
-                    element={
-                        <ProtectedRoute>
-                            <h1>Carrito</h1>
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
                     path="/dashboard/*"
                     element={
                         <AdminRoute>

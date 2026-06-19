@@ -1,11 +1,16 @@
 import useProduct from "../hooks/useProduct.js";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import "../styles/pages/Products.css";
 
 export default function Products() {
     const { getAllProductsQuery } = useProduct();
-    const [category, setCategory] = useState("all");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const category = searchParams.get("categoria") || "all";
+
+    const handleCategoryChange = (newCategory) => {
+        setSearchParams({ categoria: newCategory });
+    };
 
     const filteredProducts =
         category === "all"
@@ -21,43 +26,43 @@ export default function Products() {
                 <div className="products-categories">
                     <button
                         className={`category-btn ${category === "all" ? "active" : ""}`}
-                        onClick={() => setCategory("all")}
+                        onClick={() => handleCategoryChange("all")}
                     >
                         Todos
                     </button>
                     <button
                         className={`category-btn ${category === "smartphone" ? "active" : ""}`}
-                        onClick={() => setCategory("smartphone")}
+                        onClick={() => handleCategoryChange("smartphone")}
                     >
                         Smartphones
                     </button>
                     <button
                         className={`category-btn ${category === "laptop" ? "active" : ""}`}
-                        onClick={() => setCategory("laptop")}
+                        onClick={() => handleCategoryChange("laptop")}
                     >
                         Laptops
                     </button>
                     <button
                         className={`category-btn ${category === "printer" ? "active" : ""}`}
-                        onClick={() => setCategory("printer")}
+                        onClick={() => handleCategoryChange("printer")}
                     >
                         Impresoras
                     </button>
                     <button
                         className={`category-btn ${category === "accessories" ? "active" : ""}`}
-                        onClick={() => setCategory("accessories")}
+                        onClick={() => handleCategoryChange("accessories")}
                     >
                         Accesorios
                     </button>
                     <button
                         className={`category-btn ${category === "tv" ? "active" : ""}`}
-                        onClick={() => setCategory("tv")}
+                        onClick={() => handleCategoryChange("tv")}
                     >
                         Televisores
                     </button>
                     <button
                         className={`category-btn ${category === "camera" ? "active" : ""}`}
-                        onClick={() => setCategory("camera")}
+                        onClick={() => handleCategoryChange("camera")}
                     >
                         Cámaras
                     </button>

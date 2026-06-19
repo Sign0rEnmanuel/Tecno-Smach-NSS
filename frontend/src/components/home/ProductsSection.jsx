@@ -11,16 +11,16 @@ export default function ProductsSection() {
                         Desde las mas compactas hasta las mas potentes
                     </p>
                 </Link>
-                <Link to="/productos?categoria=smartphones">
+                <Link to="/productos?categoria=smartphone">
                     <h3 className="box-title">Smartphones</h3>
                     <p className="box-description">
                         Desde las mas compactas hasta las mas potentes
                     </p>
                 </Link>
-                <Link to="/productos?categoria=impresoras">
+                <Link to="/productos?categoria=printer">
                     <h3 className="box-title">Impresoras</h3>
                     <p className="box-description">
-                        Desde las mas compactas hasta las mas potentes
+                        Desde las mas rapidas hasta las mas silenciosas
                     </p>
                 </Link>
             </div>

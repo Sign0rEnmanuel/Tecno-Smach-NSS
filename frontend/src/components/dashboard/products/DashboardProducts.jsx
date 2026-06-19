@@ -5,29 +5,39 @@ import EditProduct from "./EditProduct";
 import "../../../styles/components/dashboard/products/DashboardProducts.css";
 
 export default function DashboardProducts() {
-    const { getAllProductsQuery, createProductMutation, updateProductMutation, deleteProductMutation } = useProduct();
+    const {
+        getAllProductsQuery,
+        createProductMutation,
+        updateProductMutation,
+        deleteProductMutation,
+    } = useProduct();
+
     const [showCreate, setShowCreate] = useState(false);
     const [editingProduct, setEditingProduct] = useState(null);
 
     const handleDelete = (id) => {
-        if (window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+        if (
+            window.confirm(
+                "¿Estás seguro de que deseas eliminar este producto?",
+            )
+        ) {
             deleteProductMutation.mutate(id);
         }
     };
 
-    if (getAllProductsQuery.isLoading) {
+    if (getAllProductsQuery.isLoading)
         return <div className="loading-products">Cargando productos...</div>;
-    }
-
-    if (getAllProductsQuery.isError) {
+    if (getAllProductsQuery.isError)
         return <div className="error-products">Error al cargar productos</div>;
-    }
 
     return (
         <div className="dashboard-products-container">
             <div className="dashboard-products-header">
                 <h2>Gestión de Productos</h2>
-                <button className="add-product-btn" onClick={() => setShowCreate(true)}>
+                <button
+                    className="add-product-btn"
+                    onClick={() => setShowCreate(true)}
+                >
                     + Nuevo Producto
                 </button>
             </div>
@@ -46,36 +56,59 @@ export default function DashboardProducts() {
                     <tbody>
                         {getAllProductsQuery.data?.map((product) => (
                             <tr key={product._id}>
-                                <td>
+                                <td data-label="Producto">
                                     <div className="product-item">
-                                        <img src={product.image} alt={product.name} />
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                        />
                                         <div className="product-item-info">
-                                            <span className="product-item-name">{product.name}</span>
-                                            <span className="product-item-brand">{product.brand}</span>
+                                            <span className="product-item-name">
+                                                {product.name}
+                                            </span>
+                                            <span className="product-item-brand">
+                                                {product.brand}
+                                            </span>
                                         </div>
                                     </div>
                                 </td>
-                                <td style={{ textTransform: "capitalize" }}>{product.category}</td>
-                                <td className="product-price">
+                                <td
+                                    data-label="Categoría"
+                                    style={{ textTransform: "capitalize" }}
+                                >
+                                    {product.category}
+                                </td>
+                                <td
+                                    data-label="Precio"
+                                    className="product-price"
+                                >
                                     ${product.price}
                                 </td>
-                                <td>
-                                    <span className={`product-stock ${product.stock <= 5 ? "low" : ""}`}>
+                                <td data-label="Stock">
+                                    <span
+                                        className={`product-stock ${product.stock <= 5 ? "low" : ""}`}
+                                    >
                                         {product.stock}
                                     </span>
                                 </td>
-                                <td>
+                                <td data-label="Acciones">
                                     <div className="product-actions">
                                         <button
                                             className="edit-btn"
-                                            onClick={() => setEditingProduct(product)}
+                                            onClick={() =>
+                                                setEditingProduct(product)
+                                            }
                                         >
                                             Editar
                                         </button>
                                         <button
                                             className="delete-btn"
-                                            onClick={() => handleDelete(product._id)}
-                                            disabled={deleteProductMutation.isPending}
+                                            onClick={() =>
+                                                handleDelete(product._id)
+                                            }
+                                            disabled={
+                                                deleteProductMutation.isPending
+                                            }
                                         >
                                             Eliminar
                                         </button>

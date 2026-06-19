@@ -43,9 +43,6 @@ export default function Navbar() {
                         <Link to="/perfil" onClick={closeMenu}>
                             <button className="nav-btn">Perfil</button>
                         </Link>
-                        <Link to="/carrito" onClick={closeMenu}>
-                            <button className="nav-btn">Carrito</button>
-                        </Link>
                         {profileQuery.data.role === "admin" && (
                             <Link to="/dashboard" onClick={closeMenu}>
                                 <button className="nav-btn">Dashboard</button>

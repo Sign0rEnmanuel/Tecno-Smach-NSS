@@ -4,21 +4,29 @@ import DashboardProducts from "../components/dashboard/products/DashboardProduct
 import DashboardOrders from "../components/dashboard/orders/DashboardOrders.jsx";
 import "../styles/pages/Dashboard.css";
 
+const NAV_LINKS = [
+    { to: "/dashboard/", label: "Usuarios" },
+    { to: "/dashboard/productos", label: "Productos" },
+    { to: "/dashboard/pedidos", label: "Pedidos" },
+];
+
 export default function Dashboard() {
     const location = useLocation();
-
     return (
         <div className="dashboard">
             <nav className="dashboard-nav">
-                <Link to="/dashboard/" className={`dashboard-btn ${location.pathname === "/dashboard/" ? "active" : ""}`}>
-                    <button>Usuarios</button>
-                </Link>
-                <Link to="/dashboard/productos" className={`dashboard-btn ${location.pathname === "/dashboard/productos" ? "active" : ""}`}>
-                    <button>Productos</button>
-                </Link>
-                <Link to="/dashboard/pedidos" className={`dashboard-btn ${location.pathname === "/dashboard/pedidos" ? "active" : ""}`}>
-                    <button>Pedidos</button>
-                </Link>
+                {NAV_LINKS.map(({ to, label }) => {
+                    const isActive = location.pathname === to;
+                    return (
+                        <Link
+                            key={to}
+                            to={to}
+                            className={`dashboard-nav-link ${isActive ? "active" : ""}`}
+                        >
+                            {label}
+                        </Link>
+                    );
+                })}
             </nav>
             <main className="dashboard-main">
                 <Routes>

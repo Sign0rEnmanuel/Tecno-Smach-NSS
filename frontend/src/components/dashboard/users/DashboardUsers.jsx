@@ -8,13 +8,10 @@ export default function DashboardUsers() {
         changeRoleMutation.mutate({ userId, role: newRole });
     };
 
-    if (usersQuery.isLoading) {
+    if (usersQuery.isLoading)
         return <div className="loading-users">Cargando usuarios...</div>;
-    }
-
-    if (usersQuery.isError) {
+    if (usersQuery.isError)
         return <div className="error-users">Error al cargar usuarios</div>;
-    }
 
     return (
         <div className="dashboard-users-container">
@@ -35,14 +32,20 @@ export default function DashboardUsers() {
                     <tbody>
                         {usersQuery.data?.map((user) => (
                             <tr key={user._id}>
-                                <td className="user-name">{user.username}</td>
-                                <td className="user-email">{user.email}</td>
-                                <td>
+                                <td data-label="Nombre" className="user-name">
+                                    {user.username}
+                                </td>
+                                <td data-label="Email" className="user-email">
+                                    {user.email}
+                                </td>
+                                <td data-label="Rol">
                                     <span className={`role-badge ${user.role}`}>
-                                        {user.role}
+                                        {user.role === "admin"
+                                            ? "Admin"
+                                            : "User"}
                                     </span>
                                 </td>
-                                <td>
+                                <td data-label="Cambiar rol">
                                     <select
                                         className="role-select"
                                         value={user.role}
