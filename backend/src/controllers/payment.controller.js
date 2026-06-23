@@ -7,7 +7,11 @@ const trimUrl = (url) => (url || "").replace(/\/+$/, "");
 
 export const createPreference = async (req, res) => {
     try {
-        const { productId, quantity = 1 } = req.body;
+        const { productId, quantity = 1, address } = req.body;
+
+        if (!address || !address.street || !address.number || !address.neighborhood || !address.city || !address.state || !address.zipCode) {
+            return res.status(400).json({ message: "Dirección de entrega incompleta" });
+        }
 
         const product = await Product.findById(productId);
         if (!product) {
@@ -24,6 +28,7 @@ export const createPreference = async (req, res) => {
             quantity: Number(quantity),
             totalPrice: Number(product.price) * Number(quantity),
             paymentStatus: "pending",
+            address,
         });
 
         const frontendUrl = trimUrl(process.env.FRONTEND_URL);

@@ -5,7 +5,7 @@ export default function ProductsSection() {
     return (
         <section className="products-section">
             <div className="products-section-content">
-                <Link to="/productos?categoria=laptops">
+                <Link to="/productos?categoria=laptop">
                     <h3 className="box-title">Laptops</h3>
                     <p className="box-description">
                         Desde las mas compactas hasta las mas potentes
