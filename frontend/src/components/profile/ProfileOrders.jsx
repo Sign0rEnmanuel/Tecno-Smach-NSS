@@ -42,7 +42,20 @@ export default function ProfileOrders() {
                                 </div>
                             )}
 
-                            <div className="order-card-footer">
+                            <div className="order-card-address" style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--text-secondary-color)' }}>
+                                {order.address ? (
+                                    <>
+                                        <strong>Entrega en:</strong>
+                                        <p>{order.address.street}, {order.address.number} {order.address.complement && `(${order.address.complement})`}</p>
+                                        <p>{order.address.neighborhood}, {order.address.city} - {order.address.state}</p>
+                                        <p>CEP: {order.address.zipCode}</p>
+                                    </>
+                                ) : (
+                                    <p>Dirección no registrada</p>
+                                )}
+                            </div>
+
+                            <div className="order-card-footer" style={{ marginTop: '1rem' }}>
                                 <div className="order-status-group">
                                     <span className="status-label">Pago:</span>
                                     <span className={`status-badge ${order.paymentStatus}`}>

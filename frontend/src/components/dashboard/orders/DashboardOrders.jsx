@@ -25,6 +25,7 @@ export default function DashboardOrders() {
                         <tr>
                             <th>Fecha</th>
                             <th>Cliente</th>
+                            <th>Dirección</th>
                             <th>Producto</th>
                             <th>Total</th>
                             <th>Pago</th>
@@ -49,6 +50,17 @@ export default function DashboardOrders() {
                                             {order.user?.email || ""}
                                         </span>
                                     </div>
+                                </td>
+                                <td data-label="Dirección">
+                                    {order.address ? (
+                                        <div className="order-address">
+                                            <p>{order.address.street}, {order.address.number} {order.address.complement && `(${order.address.complement})`}</p>
+                                            <p>{order.address.neighborhood}, {order.address.city} - {order.address.state}</p>
+                                            <p>CEP: {order.address.zipCode}</p>
+                                        </div>
+                                    ) : (
+                                        <span className="no-address">No registrada</span>
+                                    )}
                                 </td>
                                 <td data-label="Producto">
                                     <div className="order-product">
@@ -121,7 +133,7 @@ export default function DashboardOrders() {
                         ))}
                         {allOrdersQuery.data?.length === 0 && (
                             <tr>
-                                <td colSpan="6" style={{ textAlign: "center" }}>
+                                <td colSpan="7" style={{ textAlign: "center" }}>
                                     No hay pedidos registrados
                                 </td>
                             </tr>
